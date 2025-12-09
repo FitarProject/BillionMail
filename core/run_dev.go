@@ -299,37 +299,37 @@ func AbsPath(p string) string {
 	return p
 }
 
-func main() {
-	ctx := context.Background()
-	logger := log.New(os.Stdout, "[Main] ", log.LstdFlags)
-
-	// Arguments for root path and script path
-	var rootPath, scriptPath string
-
-	// Get command line arguments
-	args := os.Args
-	if len(args) < 3 {
-		rootPath = "."              // Default root path
-		scriptPath = "./run_dev.sh" // Default script path
-	} else {
-		rootPath = args[1]
-		scriptPath = args[2]
-	}
-
-	// Create file watcher
-	watcher, err := NewFileWatcher(AbsPath(rootPath), AbsPath(scriptPath), []string{".go", ".html", "public/dist/"})
-	if err != nil {
-		logger.Fatalf("Failed to create file watcher: %v", err)
-	}
-	defer watcher.Stop()
-
-	// Start monitoring
-	if err := watcher.Start(ctx); err != nil {
-		logger.Fatalf("Failed to start monitoring: %v", err)
-	}
-
-	logger.Printf("File watcher started, press Ctrl+C to stop")
-
-	// Keep the main goroutine running
-	select {}
-}
+//func main() {
+//	ctx := context.Background()
+//	logger := log.New(os.Stdout, "[Main] ", log.LstdFlags)
+//
+//	// Arguments for root path and script path
+//	var rootPath, scriptPath string
+//
+//	// Get command line arguments
+//	args := os.Args
+//	if len(args) < 3 {
+//		rootPath = "."              // Default root path
+//		scriptPath = "./run_dev.sh" // Default script path
+//	} else {
+//		rootPath = args[1]
+//		scriptPath = args[2]
+//	}
+//
+//	// Create file watcher
+//	watcher, err := NewFileWatcher(AbsPath(rootPath), AbsPath(scriptPath), []string{".go", ".html", "public/dist/"})
+//	if err != nil {
+//		logger.Fatalf("Failed to create file watcher: %v", err)
+//	}
+//	defer watcher.Stop()
+//
+//	// Start monitoring
+//	if err := watcher.Start(ctx); err != nil {
+//		logger.Fatalf("Failed to start monitoring: %v", err)
+//	}
+//
+//	logger.Printf("File watcher started, press Ctrl+C to stop")
+//
+//	// Keep the main goroutine running
+//	select {}
+//}
